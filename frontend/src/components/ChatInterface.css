@@ -1,0 +1,327 @@
+/* AP Tourism AI - Custom Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(135deg, #fff5f0 0%, #ffffff 50%, #f0fff4 100%);
+}
+
+/* Header */
+.chat-header {
+    background: linear-gradient(90deg, #f97316 0%, #22c55e 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-content {
+    max-width: 56rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-icon {
+    width: 3rem;
+    height: 3rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem;
+}
+
+.header-subtitle {
+    color: #fed7aa;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.language-select {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #374151;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.messages-container {
+    max-width: 56rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.message-wrapper {
+    display: flex;
+    width: 100%;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-wrapper.user {
+    justify-content: flex-end;
+}
+
+.message-wrapper.bot {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 80%;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.message-bubble.user {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: white;
+    border-top-right-radius: 0.25rem;
+}
+
+.message-bubble.bot {
+    background: white;
+    color: #1f2937;
+    border: 2px solid #fed7aa;
+    border-top-left-radius: 0.25rem;
+}
+
+.message-text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.message-time {
+    font-size: 0.625rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+.message-bubble.user .message-time {
+    color: #fed7aa;
+}
+
+.message-bubble.bot .message-time {
+    color: #9ca3af;
+}
+
+/* Loading Indicator */
+.loading-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.loading-bubble {
+    background: white;
+    border-radius: 1rem;
+    border-top-left-radius: 0.25rem;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fed7aa;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #fb923c;
+    border-radius: 50%;
+    animation: bounce 1s infinite;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-0.5rem);
+    }
+}
+
+/* Input Area */
+.chat-input-area {
+    background: white;
+    padding: 1rem;
+    border-top: 1px solid #fed7aa;
+}
+
+.input-container {
+    max-width: 56rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.mic-button {
+    padding: 0.75rem;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.mic-button.listening {
+    background: #ef4444;
+    color: white;
+    animation: pulse 1s infinite;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+.mic-button.idle {
+    background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+    color: white;
+}
+
+.mic-button.idle:hover {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.text-input-wrapper {
+    flex: 1;
+    background: white;
+    border-radius: 1rem;
+    border: 2px solid #fed7aa;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.text-input-wrapper:focus-within {
+    border-color: #fb923c;
+    box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.1);
+}
+
+.text-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.75rem;
+    max-height: 8rem;
+    min-height: 3.125rem;
+    resize: none;
+    color: #374151;
+    font-family: inherit;
+    font-size: 0.875rem;
+}
+
+.text-input::placeholder {
+    color: #9ca3af;
+}
+
+.send-button {
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.send-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+
+.send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.status-indicators {
+    max-width: 56rem;
+    margin: 0.5rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    padding: 0 0.5rem;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .message-bubble {
+        max-width: 70%;
+    }
+}
