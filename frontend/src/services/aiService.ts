@@ -24,8 +24,8 @@ const MOCK_RESPONSES: Record<string, Record<string, string>> = {
 };
 
 export const generateResponse = async (text: string, language: 'en-US' | 'hi-IN' | 'te-IN'): Promise<string> => {
-    // Call backend server instead of Claude API directly (to avoid CORS)
-    const BACKEND_URL = 'http://localhost:3001';
+    // Call backend server (relative path to work with Vite proxy and Vercel rewrites)
+    const BACKEND_URL = '';
 
     try {
         console.log('🤖 Sending request to backend server...');
