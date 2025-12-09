@@ -1,11 +1,11 @@
-import OpenAI from 'openai';
+const OpenAI = require('openai');
 
 const zenmux = new OpenAI({
     apiKey: process.env.VITE_ZENMUX_API_KEY,
     baseURL: 'https://zenmux.ai/api/v1'
 });
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -53,4 +53,4 @@ export default async function handler(req, res) {
         console.error('API Error:', error);
         res.status(500).json({ error: error.message });
     }
-}
+};
