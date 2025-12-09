@@ -1,11 +1,10 @@
 {
     "name": "tourism-backend",
     "version": "1.0.0",
-    "type": "module",
-    "main": "api/index.js",
+    "main": "api/chat.js",
     "scripts": {
-        "start": "node api/index.js",
-        "dev": "nodemon api/index.js",
+        "start": "node api/chat.js",
+        "dev": "nodemon api/chat.js",
         "build": "cd frontend && npm install && npm run build"
     },
     "dependencies": {
