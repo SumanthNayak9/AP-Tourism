@@ -1,21 +1,31 @@
 import OpenAI from 'openai';
 
-export const config = {
-    runtime: 'edge',
-};
-
 const zenmux = new OpenAI({
     apiKey: process.env.VITE_ZENMUX_API_KEY,
     baseURL: 'https://zenmux.ai/api/v1'
 });
 
-export default async function handler(req) {
+export default async function handler(req, res) {
+    // Enable CORS
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
+
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
     if (req.method !== 'POST') {
-        return new Response('Method Not Allowed', { status: 405 });
+        return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
     try {
-        const { message, language } = await req.json();
+        const { message, language } = req.body;
 
         const languageMap = {
             'en-US': 'English',
@@ -37,14 +47,10 @@ export default async function handler(req) {
 
         const responseText = completion.choices[0].message.content;
 
-        return new Response(JSON.stringify({ response: responseText }), {
-            headers: { 'Content-Type': 'application/json' },
-        });
+        res.status(200).json({ response: responseText });
 
     } catch (error) {
-        return new Response(JSON.stringify({ error: error.message }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        console.error('API Error:', error);
+        res.status(500).json({ error: error.message });
     }
 }

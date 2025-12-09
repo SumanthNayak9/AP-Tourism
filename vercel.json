@@ -2,7 +2,11 @@
     "version": 2,
     "rewrites": [
         {
-            "source": "/((?!api/.*).*)",
+            "source": "/api/chat",
+            "destination": "/api/chat.js"
+        },
+        {
+            "source": "/(.*)",
             "destination": "/frontend/dist/$1"
         }
     ]
